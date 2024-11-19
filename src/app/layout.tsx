@@ -26,7 +26,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased grid gap-4 dark`}
+        /*
+          This is required until https://github.com/facebook/react/issues/24430 is fixed.
+          In practice, some extensions (example Grammarly) append stuff to the dom elements (attributes, <script> elements, etc.) that confuse React when it's time to hydrate the client.
+          This annotation seems to be not recursive (tried it on the html element at the start with no effect).
+        */
+        suppressHydrationWarning
       >
         {children}
       </body>
